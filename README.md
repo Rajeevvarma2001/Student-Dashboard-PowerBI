@@ -1,69 +1,55 @@
-# Student Dashboard (Power BI)
+# Student Performance Dashboard (Power BI)
 
-An interactive Power BI report for tracking academic performance across departments and academic years: enrollment, unique students, GPA, graduation rate and faculty staffing.
+An interactive Power BI dashboard for analyzing student enrollment, academic performance, graduation outcomes and faculty capacity across departments and academic years.
 
-## Open the report
+![Dashboard overview](screenshots/overview.png)
 
-1. Install [Power BI Desktop](https://powerbi.microsoft.com/desktop/) (free, Windows). Use a recent release; the file was saved in the September 2026 version.
-2. Clone or download this repository.
-3. Open `Student_dashboard_interactive.pbix`.
+## Key Questions Answered
 
-The data model is imported into the file, so the report works without any external connection.
+- How has total enrollment changed across academic years?
+- Which departments have the most students and the highest graduation rates?
+- How is the average GPA trending over time?
+- Is the student-to-faculty ratio improving or getting worse?
 
-## Report pages
+## Features
 
-### 1. Overview
+**Overview page**
+- KPI cards: Total Enrollment, Unique Students, Average GPA, Total Faculty, Graduation Rate %
+- Dropdown slicers for Academic Year and Department, plus a one-click **Clear filters** button
+- Trend charts for enrollment, average GPA and student-faculty ratio
+- Department comparisons for student count and graduation rate
+- Department Scorecard table that cross-filters every other visual
 
-| Area | Visuals |
-|---|---|
-| KPI cards | Total Enrollment, Unique Students, Average GPA, Graduation Rate %, Total Faculty |
-| Trends | Total Enrollment by Academic Year, Average GPA Trend, Student-Faculty Ratio Trend |
-| Department comparison | Unique Students by Department, Graduation Rate % by Department |
-| Detail | Department Scorecard table (Enrollment, Unique Students, Average GPA, Graduation Rate %) |
-| Filters | Academic Year slicer, Department slicer, **Clear filters** button |
+**Department Details page (drill-through)**
+- Right-click any department → *Drill through* → *Department Details*
+- Department-specific KPIs and year-over-year trends for enrollment, GPA and graduation rate
+- Back button to return to the overview
 
-### 2. Department Details (drillthrough)
-
-Right-click any department on the Overview page and choose **Drill through → Department Details** to see that department alone:
-
-- KPI cards: Total Enrollment, Unique Students, Average GPA, Graduation Rate %
-- Trend lines: Enrollment, Average GPA and Graduation Rate % by Academic Year
-- **Back** button to return to the Overview
-
-## Data model
+## Data Model
 
 Star schema with five tables:
 
-| Table | Role |
-|---|---|
-| `EnrollmentTable` | Fact table: enrollment records, holds most measures |
-| `FacultyTable` | Fact table: faculty headcount by department and year |
-| `StudentsTable` | Student dimension |
-| `DepartmentsTable` | Department dimension (`DepartmentName`) |
-| `DimAcademicYear` | Academic year dimension (`AcademicYear`) |
+| Table | Type | Description |
+|---|---|---|
+| `EnrollmentTable` | Fact | Student enrollment records, GPA and graduation status |
+| `FacultyTable` | Fact | Faculty records used for capacity metrics |
+| `StudentsTable` | Dimension | Student attributes |
+| `DepartmentsTable` | Dimension | Department names |
+| `DimAcademicYear` | Dimension | Academic year calendar |
 
-### Measures
+### DAX Measures
+`Total Enrollment`, `Unique Students`, `Average GPA`, `Graduation Rate %`, `Total Faculty`, `Student Faculty Ratio`
 
-| Measure | Table |
-|---|---|
-| Total Enrollment | EnrollmentTable |
-| Unique Students | EnrollmentTable |
-| Average GPA | EnrollmentTable |
-| Graduation Rate % | EnrollmentTable |
-| Total Faculty | FacultyTable |
-| Student Faculty Ratio | FacultyTable |
+## Tools & Skills
 
-## Skills demonstrated
+Power BI Desktop · Power Query · Data Modeling (star schema) · DAX · Interactive report design (slicers, drill-through, cross-filtering)
 
-- Dimensional modelling (fact and dimension tables, shared year and department dimensions)
-- DAX measures for KPIs, distinct counts and ratios
-- Drillthrough pages with a back button
-- Slicers, cross-filtering and a "Clear all slicers" button
-- Consistent layout and theming (Fluent 2 base theme, 1920×1080 canvas)
+## How to Use
 
-## Repository layout
+1. Download `Student_dashboard_interactive.pbix`
+2. Open it in [Power BI Desktop](https://powerbi.microsoft.com/desktop/) (free)
+3. Use the slicers at the top, click any chart to cross-filter, or right-click a department to drill through
 
-```
-Student_dashboard_interactive.pbix   Power BI report and data model
-docs/screenshots/                    Page screenshots (add overview.png, department-details.png)
-```
+## Author
+
+**Rajeev Varma Indukuri**
